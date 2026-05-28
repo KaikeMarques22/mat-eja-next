@@ -2,12 +2,11 @@
 
 import { redirect } from 'next/navigation';
 import { revokeSession } from '../../../lib/users';
-import { clearSessionCookie, getSessionTokenFromCookies } from '../../../lib/session';
+import { clearSessionCookie } from '../../../lib/session';
 
 export async function logoutAction() {
   try {
-    const token = await getSessionTokenFromCookies();
-    await revokeSession(token);
+    await revokeSession();
   } catch (error) {
     console.error('logoutAction:', error);
   }
