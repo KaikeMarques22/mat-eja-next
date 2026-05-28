@@ -7,15 +7,15 @@ export default async function AprendizagemPage() {
   const temas = await getProgressoPorTema(user.id);
 
   return (
-    <main className="min-h-screen px-4 py-6">
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">Aprendizagem</h1>
+    <main className="min-h-screen px-4 py-6 sm:px-6 md:px-8">
+      <header className="mb-6 md:mb-8">
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Aprendizagem</h1>
         <p className="mt-1 text-slate-600">
           Estude os conteúdos no seu ritmo e acompanhe seu progresso.
         </p>
       </header>
 
-      <div className="space-y-3">
+      <div className="grid gap-3 md:grid-cols-2">
         {temas.map((tema) =>
           tema.disponivel ? (
             <Link

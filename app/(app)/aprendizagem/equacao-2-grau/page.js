@@ -8,21 +8,21 @@ const VIDEO_EMBED = 'https://www.youtube.com/embed/r-Vuvb18kUk';
 export default function Equacao2GrauPage() {
   return (
     <main className="min-h-screen pb-4">
-      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 py-5 text-white">
+      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 py-5 text-white sm:px-6 md:px-8 lg:rounded-b-2xl">
         <Link
           href="/aprendizagem"
           className="mb-3 inline-flex items-center gap-1 text-sm text-blue-100 hover:text-white"
         >
           ← Voltar para Aprendizagem
         </Link>
-        <h1 className="text-2xl font-bold">Equação do 2º grau</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Equação do 2º grau</h1>
         <p className="mt-2 text-sm leading-relaxed text-blue-50">
           Aprenda a identificar, classificar e resolver equações do segundo
           grau.
         </p>
       </header>
 
-      <article className="space-y-5 px-4 py-6 text-slate-800">
+      <article className="mx-auto max-w-4xl space-y-5 px-4 py-6 text-slate-800 sm:px-6 md:px-8 md:py-8">
         <section className="rounded-2xl bg-white p-4 shadow-sm">
           <h2 className="text-lg font-bold text-slate-900">O que é?</h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-700">

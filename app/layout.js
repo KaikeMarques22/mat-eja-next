@@ -1,14 +1,13 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Mat EJA",
+  title: "E-Solve",
   description: "Plataforma de estudos para a EJA",
 };
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export default function RootLayout({ children }) {

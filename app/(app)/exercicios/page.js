@@ -198,8 +198,8 @@ export default function ExerciciosPage() {
 
   return (
     <main className="min-h-screen pb-6">
-      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 py-5 text-white">
-        <h1 className="text-2xl font-bold">Exercícios</h1>
+      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 py-5 text-white sm:px-6 md:px-8 lg:rounded-b-2xl">
+        <h1 className="text-2xl font-bold sm:text-3xl">Exercícios</h1>
         <p className="mt-2 text-sm leading-relaxed text-blue-50">
           Pratique com exercícios de múltipla escolha. Você pode corrigir por
           matéria e acompanhar seus acertos.
@@ -221,7 +221,7 @@ export default function ExerciciosPage() {
         </div>
       </header>
 
-      <article className="space-y-6 px-4 py-6 text-slate-800">
+      <article className="space-y-6 px-4 py-6 text-slate-800 sm:px-6 md:px-8">
         {EXERCICIOS.map((materia) => {
           const respMateria = respostas[materia.id] ?? {};
           const r = resultado[materia.id];
@@ -290,7 +290,7 @@ export default function ExerciciosPage() {
                         {q.enunciado}
                       </p>
 
-                      <div className="mt-3 grid gap-2">
+                      <div className="mt-3 grid gap-2 md:grid-cols-2">
                         {q.opcoes.map((op, opIdx) => {
                           const isMarcada = marcada === opIdx;
                           const isCerta = opIdx === certa;

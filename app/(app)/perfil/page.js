@@ -44,9 +44,9 @@ export default async function PerfilPage() {
 
   return (
     <>
-      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-5 pb-8 pt-6 text-white">
-        <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/80 bg-white/10">
+      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 pb-8 pt-6 text-white sm:px-6 md:px-8 lg:rounded-b-2xl">
+        <div className="flex items-center gap-4 md:gap-6">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-white/80 bg-white/10 sm:h-16 sm:w-16 md:h-20 md:w-20">
             <svg
               className="h-9 w-9"
               fill="none"
@@ -63,7 +63,7 @@ export default async function PerfilPage() {
             </svg>
           </div>
           <div>
-            <h1 className="text-2xl font-bold">{nomeExibicao}</h1>
+            <h1 className="text-2xl font-bold sm:text-3xl">{nomeExibicao}</h1>
             <p className="text-sm text-blue-100">Membro desde {membroDesde}</p>
             <p className="mt-1 text-xs text-blue-200">RA: {user.ra}</p>
           </div>
@@ -86,10 +86,10 @@ export default async function PerfilPage() {
         </div>
       </header>
 
-      <div className="space-y-6 px-4 py-6">
+      <div className="space-y-6 px-4 py-6 sm:px-6 md:px-8">
         <section>
-          <h2 className="mb-3 text-lg font-bold text-slate-800">Seus estudos</h2>
-          <div className="space-y-3">
+          <h2 className="mb-3 text-lg font-bold text-slate-800 md:text-xl">Seus estudos</h2>
+          <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2">
             {temas.map((tema) => {
               const href =
                 tema.disponivel && tema.slug
@@ -152,7 +152,7 @@ export default async function PerfilPage() {
             Conquistas
           </h2>
           {conquistas.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {conquistas.map((c) => (
                 <article
                   key={`${c.titulo}-${c.descricao}`}

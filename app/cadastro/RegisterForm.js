@@ -27,7 +27,7 @@ export default function RegisterForm() {
   return (
     <form
       action={formAction}
-      className="mt-8 w-full max-w-xl rounded-xl border-2 border-slate-900 bg-white/90 p-6 shadow-2xl"
+      className="w-full rounded-xl border-2 border-slate-900 bg-white/90 p-5 shadow-2xl sm:p-6"
     >
       <h2 className="mb-6 text-center text-2xl font-bold text-slate-900">
         Criar conta

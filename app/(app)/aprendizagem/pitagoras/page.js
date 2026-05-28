@@ -8,21 +8,21 @@ const VIDEO_EMBED = 'https://www.youtube.com/embed/7YeYeL2MjB4';
 export default function PitagorasPage() {
   return (
     <main className="min-h-screen pb-4">
-      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 py-5 text-white">
+      <header className="bg-gradient-to-br from-blue-600 to-blue-700 px-4 py-5 text-white sm:px-6 md:px-8 lg:rounded-b-2xl">
         <Link
           href="/aprendizagem"
           className="mb-3 inline-flex items-center gap-1 text-sm text-blue-100 hover:text-white"
         >
           ← Voltar para Aprendizagem
         </Link>
-        <h1 className="text-2xl font-bold">Teorema de Pitágoras</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Teorema de Pitágoras</h1>
         <p className="mt-2 text-sm leading-relaxed text-blue-50">
           Um dos alicerces da Matemática — essencial para Geometria e
           Trigonometria.
         </p>
       </header>
 
-      <article className="space-y-5 px-4 py-6 text-slate-800">
+      <article className="mx-auto max-w-4xl space-y-5 px-4 py-6 text-slate-800 sm:px-6 md:px-8 md:py-8">
         <section className="rounded-2xl bg-white p-4 shadow-sm">
           <h2 className="text-lg font-bold text-slate-900">Por que estudar?</h2>
           <p className="mt-2 text-sm leading-relaxed text-slate-700">
