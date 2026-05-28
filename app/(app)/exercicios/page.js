@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
+import { registrarCorrecaoExercicioAction } from './actions';
 
 const EXERCICIOS = [
   {
@@ -164,9 +166,11 @@ function letraDaOpcao(opcao) {
 }
 
 export default function ExerciciosPage() {
+  const router = useRouter();
   const [respostas, setRespostas] = useState(() => ({}));
   const [resultado, setResultado] = useState(() => ({}));
   const [mostrarGabarito, setMostrarGabarito] = useState(false);
+  const [corrigindoId, setCorrigindoId] = useState(null);
 
   const totalPorMateria = useMemo(() => {
     const map = {};
@@ -182,13 +186,32 @@ export default function ExerciciosPage() {
     setResultado((prev) => ({ ...prev, [materiaId]: undefined }));
   }
 
-  function corrigir(materia) {
+  async function corrigir(materia) {
     const respMateria = respostas[materia.id] ?? {};
     let acertos = 0;
     materia.questoes.forEach((q, idx) => {
       if (respMateria[idx] === q.correta) acertos += 1;
     });
-    setResultado((prev) => ({ ...prev, [materia.id]: { acertos } }));
+
+    setCorrigindoId(materia.id);
+    const progresso = await registrarCorrecaoExercicioAction(materia.id);
+    setCorrigindoId(null);
+
+    setResultado((prev) => ({
+      ...prev,
+      [materia.id]: {
+        acertos,
+        progressoOk: progresso.ok,
+        progressoPercentual: progresso.percentual,
+        progressoMensagem: progresso.ok
+          ? `Progresso em ${materia.titulo}: +10% (agora ${progresso.percentual}%).`
+          : progresso.message ?? 'Não foi possível atualizar o progresso.',
+      },
+    }));
+
+    if (progresso.ok) {
+      router.refresh();
+    }
   }
 
   function resetarMateria(materiaId) {
@@ -254,9 +277,10 @@ export default function ExerciciosPage() {
                     <button
                       type="button"
                       onClick={() => corrigir(materia)}
-                      className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
+                      disabled={corrigindoId === materia.id}
+                      className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Corrigir
+                      {corrigindoId === materia.id ? 'Corrigindo…' : 'Corrigir'}
                     </button>
                     <button
                       type="button"
@@ -269,8 +293,21 @@ export default function ExerciciosPage() {
                 </div>
 
                 {r && (
-                  <div className="mt-3 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-950">
-                    <strong>Resultado:</strong> {r.acertos}/{total} acertos
+                  <div className="mt-3 space-y-2">
+                    <div className="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-950">
+                      <strong>Resultado:</strong> {r.acertos}/{total} acertos
+                    </div>
+                    {r.progressoMensagem ? (
+                      <div
+                        className={`rounded-xl px-4 py-3 text-sm ${
+                          r.progressoOk
+                            ? 'border border-emerald-200 bg-emerald-50 text-emerald-950'
+                            : 'border border-amber-200 bg-amber-50 text-amber-950'
+                        }`}
+                      >
+                        {r.progressoMensagem}
+                      </div>
+                    ) : null}
                   </div>
                 )}
               </div>
